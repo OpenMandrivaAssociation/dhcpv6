@@ -62,6 +62,20 @@ independently or it can coexist with its counterpart protocol. This protocol
 uses client/server mode of operation but can also provide support through a
 Relay Agent.
 
+%package	doc
+Summary:	Documentation about the DHCP ipv6 server/client
+Group:		System/Servers
+
+%description	doc
+DHCPv6 is a stateful address autoconfiguration protocol for IPv6, a counterpart
+to IPv6 stateless address autoconfiguration protocol. It can either be used
+independently or it can coexist with its counterpart protocol. This protocol
+uses client/server mode of operation but can also provide support through a
+Relay Agent.
+
+This packages contains RFC/API/protocol documentation about the DHCP
+IPv6 server and client.
+
 %prep
 
 %setup -q 
@@ -90,16 +104,18 @@ rm -rf %{buildroot}
 %clean
 rm -rf %{buildroot}
 
-%files client
+%files doc
 %defattr(-,root,root)
 %doc docs/*
+
+%files client
+%defattr(-,root,root)
 %config(noreplace) %{_sysconfdir}/dhcp6c.conf
 %_sbindir/dhcp6c
 %_mandir/man?/dhcp6c*
 
 %files server
 %defattr(-,root,root)
-%doc docs/*
 %config(noreplace) %{_sysconfdir}/dhcp6s.conf
 %config(noreplace) %{_sysconfdir}/sysconfig/dhcp6s
 %{_initrddir}/dhcp6s
