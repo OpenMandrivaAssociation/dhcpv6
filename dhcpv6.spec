@@ -54,11 +54,24 @@ This package contains the headers that programmers will need to develop
 applications which will use %{client_name}.
 
 
+%package	common
+Summary:	Common files for DHCP IPv6
+Group:		System/Servers
+Provides:	%{old_name}-client
+Obsoletes:	%{old_name}-client
+
+%description	common
+%{common_description}
+
+This package contains common files for DHCP IPv6.
+
+
 %package	client
 Summary:	DHCP client for IPv6
 Group:		System/Servers
 Provides:	%{old_name}-client
 Obsoletes:	%{old_name}-client
+Requires:	%{name}-common = %{version}-%{release}
 
 %description	client
 %{common_description}
@@ -73,6 +86,7 @@ Requires(preun):rpm-helper
 Requires(post):	rpm-helper	
 Provides:	%{old_name}-server
 Obsoletes:	%{old_name}-server
+Requires:	%{name}-common = %{version}-%{release}
 
 %description	server
 %{common_description}
@@ -115,6 +129,7 @@ server and client for IPv6.
 %install
 rm -rf %{buildroot}
 %makeinstall_std
+install -d %{buildroot}%{_localstatedir}/%{name}
 
 %post -n %{client_libname} -p /sbin/ldconfig
 %postun -n %{client_libname} -p /sbin/ldconfig
@@ -148,6 +163,10 @@ rm -rf %{buildroot}
 %{_libdir}/lib%{client_name}.a
 %{_libdir}/lib%{client_name}.la
 %{_libdir}/pkgconfig/lib%{client_name}.pc
+
+%files common
+%defattr(-,root,root)
+%dir %{_localstatedir}/%{name}
 
 %files client
 %defattr(-,root,root)
