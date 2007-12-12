@@ -63,10 +63,10 @@ rm -rf %{buildroot}
 %makeinstall_std
 
 %post server
-%_post_service %{name}s
+%_post_service dhcp6s
 
 %preun server
-%_preun_service %{name}s
+%_preun_service dhcp6s
 
 %clean
 rm -rf %{buildroot}
