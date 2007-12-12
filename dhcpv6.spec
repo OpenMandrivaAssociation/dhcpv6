@@ -1,4 +1,9 @@
 %define old_name dhcp6
+%define common_description DHCPv6 is a stateful address autoconfiguration protocol for IPv6, a counterpart\
+to IPv6 stateless address autoconfiguration protocol. It can either be used\
+independently or it can coexist with its counterpart protocol. This protocol\
+uses client/server mode of operation but can also provide support through a\
+Relay Agent.
 
 Summary:	A DHCP client/server for IPv6
 Name:		dhcpv6
@@ -18,11 +23,7 @@ Obsoletes:	%{old_name}
 %define _sbindir /sbin
 
 %description 
-DHCPv6 is a stateful address autoconfiguration protocol for IPv6, a counterpart
-to IPv6 stateless address autoconfiguration protocol. It can either be used
-independently or it can coexist with its counterpart protocol. This protocol
-uses client/server mode of operation but can also provide support through a
-Relay Agent. 
+%{common_description}
 
 The protocol is defined by IETF DHC WG (www.ietf.org).
 
@@ -33,12 +34,7 @@ Provides:	%{old_name}-client
 Obsoletes:	%{old_name}-client
 
 %description	client
-DHCPv6 is a stateful address autoconfiguration protocol for IPv6, a counterpart
-to IPv6 stateless address autoconfiguration protocol. It can either be used
-independently or it can coexist with its counterpart protocol. This protocol
-uses client/server mode of operation but can also provide support through a
-Relay Agent.
-
+%{common_description}
 
 %package	server
 Summary:	DHCP server for IPv6
@@ -49,11 +45,7 @@ Provides:	%{old_name}-server
 Obsoletes:	%{old_name}-server
 
 %description	server
-DHCPv6 is a stateful address autoconfiguration protocol for IPv6, a counterpart
-to IPv6 stateless address autoconfiguration protocol. It can either be used
-independently or it can coexist with its counterpart protocol. This protocol
-uses client/server mode of operation but can also provide support through a
-Relay Agent.
+%{common_description}
 
 %package	relay
 Summary:	DHCP relay agent for IPv6
@@ -62,22 +54,14 @@ Requires(preun):rpm-helper
 Requires(post):	rpm-helper	
 
 %description	relay
-DHCPv6 is a stateful address autoconfiguration protocol for IPv6, a counterpart
-to IPv6 stateless address autoconfiguration protocol. It can either be used
-independently or it can coexist with its counterpart protocol. This protocol
-uses client/server mode of operation but can also provide support through a
-Relay Agent.
+%{common_description}
 
 %package	doc
 Summary:	Documentation about the DHCP IPv6 server/client
 Group:		System/Servers
 
 %description	doc
-DHCPv6 is a stateful address autoconfiguration protocol for IPv6, a counterpart
-to IPv6 stateless address autoconfiguration protocol. It can either be used
-independently or it can coexist with its counterpart protocol. This protocol
-uses client/server mode of operation but can also provide support through a
-Relay Agent.
+%{common_description}
 
 This packages contains RFC/API/protocol documentation about the DHCP
 IPv6 server and client.
