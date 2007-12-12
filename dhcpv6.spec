@@ -62,45 +62,6 @@ Relay Agent.
 rm -rf %{buildroot}
 %makeinstall_std
 
-mkdir -p %buildroot/%{_sysconfdir}
-cat > %buildroot/%{_sysconfdir}/%{name}c.conf <<EOF
-# sample %{name}c.conf - %version-%release
-
-interface eth0 {
-#   information-only;
-    send rapid-commit;
-    request prefix-delegation;
-#   request temp-address;
-};
-EOF
-
-cat > %buildroot/%{_sysconfdir}/%{name}s.conf <<EOF
-# sample %{name}s.conf - %version-%release
-
-# dns_server 2003::6:1 ibm.com;
-prefer-life-time 10000;
-valid-life-time 20000;
-renew-time 5000;
-rebind-time 8000;
-interface eth0 {
-    link AAA {
-        # range 3ffe:ffff:100::10 to 3ffe:ffff:100::110/64;
-        # prefix 3ffe:ffef:104::/64;
-    }
-#    group {
-#        host host0 {
-#            duid 00:00:00:00:a0:a0;
-#            address {
-#                3ffe:ffff:102::120/64;
-#            }
-#        }
-#    }
-}
-EOF
-
-mkdir -p %{buildroot}%{_sysconfdir}/sysconfig
-install -m 644 dhcp6s.sysconfig %{buildroot}%{_sysconfdir}/sysconfig/dhcp6s
-
 perl -pi -e 's/^# chkconfig:/# chkconfig: 345 66 36/' dhcp6s.sh
 
 mkdir -p %{buildroot}%{_initrddir}
@@ -118,16 +79,14 @@ rm -rf %{buildroot}
 %files client
 %defattr(-,root,root)
 %doc docs/*
-%doc dhcp6c.conf
-%config(noreplace) %{_sysconfdir}/%{name}c.conf
+%config(noreplace) %{_sysconfdir}/dhcp6c.conf
 %_sbindir/dhcp6c
 %_mandir/man?/dhcp6c*
 
 %files server
 %defattr(-,root,root)
 %doc docs/*
-%doc dhcp6s.conf
-%config(noreplace) %{_sysconfdir}/%{name}s.conf
+%config(noreplace) %{_sysconfdir}/dhcp6s.conf
 %config(noreplace) %{_sysconfdir}/sysconfig/dhcp6s
 %{_initrddir}/dhcp6s
 %_sbindir/dhcp6s
