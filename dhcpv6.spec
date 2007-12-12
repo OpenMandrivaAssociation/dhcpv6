@@ -1,5 +1,5 @@
 Summary:	A dhcp client/server for ipv6
-Name:		dhcp6
+Name:		dhcpv6
 Version:	0.85
 Release:	%mkrel 3
 License:	BSD
@@ -12,6 +12,8 @@ BuildRequires: bison
 BuildRequires: flex
 BuildRequires: openssl-devel
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
+Provides:	dhcp6
+Obsoletes:	dhcp6
 Requires(preun):rpm-helper
 Requires(post):	rpm-helper	
 
