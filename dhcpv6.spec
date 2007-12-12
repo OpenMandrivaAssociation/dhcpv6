@@ -27,6 +27,7 @@ Obsoletes:	%{old_name}
 
 The protocol is defined by IETF DHC WG (www.ietf.org).
 
+
 %package	client
 Summary:	DHCP client for IPv6
 Group:		System/Servers
@@ -35,6 +36,9 @@ Obsoletes:	%{old_name}-client
 
 %description	client
 %{common_description}
+
+This package contains the DHCP client for IPv6.
+
 
 %package	server
 Summary:	DHCP server for IPv6
@@ -47,6 +51,9 @@ Obsoletes:	%{old_name}-server
 %description	server
 %{common_description}
 
+This package contains the DHCP server for IPv6.
+
+
 %package	relay
 Summary:	DHCP relay agent for IPv6
 Group:		System/Servers
@@ -56,6 +63,9 @@ Requires(post):	rpm-helper
 %description	relay
 %{common_description}
 
+This package contains the DHCP relay agent for IPv6.
+
+
 %package	doc
 Summary:	Documentation about the DHCP IPv6 server/client
 Group:		System/Servers
@@ -63,8 +73,9 @@ Group:		System/Servers
 %description	doc
 %{common_description}
 
-This packages contains RFC/API/protocol documentation about the DHCP
-IPv6 server and client.
+This package contains RFC/API/protocol documentation about the DHCP
+server and client for IPv6.
+
 
 %prep
 
