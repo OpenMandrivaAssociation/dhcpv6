@@ -49,6 +49,19 @@ independently or it can coexist with its counterpart protocol. This protocol
 uses client/server mode of operation but can also provide support through a
 Relay Agent.
 
+%package	relay
+Summary:	DHCP relay agent for ipv6
+Group:		System/Servers
+Requires(preun):rpm-helper
+Requires(post):	rpm-helper	
+
+%description	relay
+DHCPv6 is a stateful address autoconfiguration protocol for IPv6, a counterpart
+to IPv6 stateless address autoconfiguration protocol. It can either be used
+independently or it can coexist with its counterpart protocol. This protocol
+uses client/server mode of operation but can also provide support through a
+Relay Agent.
+
 %prep
 
 %setup -q 
@@ -67,6 +80,12 @@ rm -rf %{buildroot}
 
 %preun server
 %_preun_service dhcp6s
+
+%post relay
+%_post_service dhcp6r
+
+%preun relay
+%_preun_service dhcp6r
 
 %clean
 rm -rf %{buildroot}
@@ -87,4 +106,9 @@ rm -rf %{buildroot}
 %_sbindir/dhcp6s
 %_mandir/man?/dhcp6s*
 
-
+%files relay
+%defattr(-,root,root)
+%config(noreplace) %{_sysconfdir}/sysconfig/dhcp6r
+%{_initrddir}/dhcp6r
+%_sbindir/dhcp6r
+%_mandir/man?/dhcp6r*
