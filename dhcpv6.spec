@@ -12,8 +12,6 @@ BuildRequires: openssl-devel
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 Provides:	dhcp6
 Obsoletes:	dhcp6
-Requires(preun):rpm-helper
-Requires(post):	rpm-helper	
 
 %define _sbindir /sbin
 
@@ -41,6 +39,8 @@ Relay Agent.
 %package	server
 Summary:	DHCP server for ipv6
 Group:		System/Servers
+Requires(preun):rpm-helper
+Requires(post):	rpm-helper	
 
 %description	server
 DHCPv6 is a stateful address autoconfiguration protocol for IPv6, a counterpart
