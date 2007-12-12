@@ -1,3 +1,5 @@
+%define old_name dhcp6
+
 Summary:	A dhcp client/server for ipv6
 Name:		dhcpv6
 Version:	1.0.3
@@ -10,8 +12,8 @@ BuildRequires: bison
 BuildRequires: flex
 BuildRequires: openssl-devel
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
-Provides:	dhcp6
-Obsoletes:	dhcp6
+Provides:	%{old_name}
+Obsoletes:	%{old_name}
 
 %define _sbindir /sbin
 
@@ -27,6 +29,8 @@ The protocol is defined by IETF DHC WG (www.ietf.org).
 %package	client
 Summary:	DHCP client for ipv6
 Group:		System/Servers
+Provides:	%{old_name}-client
+Obsoletes:	%{old_name}-client
 
 %description	client
 DHCPv6 is a stateful address autoconfiguration protocol for IPv6, a counterpart
@@ -41,6 +45,8 @@ Summary:	DHCP server for ipv6
 Group:		System/Servers
 Requires(preun):rpm-helper
 Requires(post):	rpm-helper	
+Provides:	%{old_name}-server
+Obsoletes:	%{old_name}-server
 
 %description	server
 DHCPv6 is a stateful address autoconfiguration protocol for IPv6, a counterpart
