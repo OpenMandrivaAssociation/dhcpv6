@@ -1,13 +1,11 @@
 Summary:	A dhcp client/server for ipv6
 Name:		dhcpv6
-Version:	0.85
-Release:	%mkrel 3
+Version:	1.0.3
+Release:	%mkrel 1
 License:	BSD
 Group:		System/Servers
 URL:		https://fedorahosted.org/dhcpv6/
-Source0:	http://dcantrel.fedorapeople.org/dhcpv6/%{name}/%{name}-%{version}.tar.bz2
-Patch0:		dhcp6.gcc4.patch
-Patch1:		dhcp6-installfix.diff
+Source0:	http://dcantrel.fedorapeople.org/%{name}/%{name}-%{version}.tar.gz
 BuildRequires: bison
 BuildRequires: flex
 BuildRequires: openssl-devel
@@ -54,8 +52,6 @@ Relay Agent.
 %prep
 
 %setup -q 
-%patch0 -p1 -b .gcc4
-%patch1 -p0
 
 %build
 %configure
