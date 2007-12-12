@@ -1,6 +1,6 @@
 %define old_name dhcp6
 
-Summary:	A dhcp client/server for ipv6
+Summary:	A DHCP client/server for IPv6
 Name:		dhcpv6
 Version:	1.0.3
 Release:	%mkrel 1
@@ -27,7 +27,7 @@ Relay Agent.
 The protocol is defined by IETF DHC WG (www.ietf.org).
 
 %package	client
-Summary:	DHCP client for ipv6
+Summary:	DHCP client for IPv6
 Group:		System/Servers
 Provides:	%{old_name}-client
 Obsoletes:	%{old_name}-client
@@ -41,7 +41,7 @@ Relay Agent.
 
 
 %package	server
-Summary:	DHCP server for ipv6
+Summary:	DHCP server for IPv6
 Group:		System/Servers
 Requires(preun):rpm-helper
 Requires(post):	rpm-helper	
@@ -56,7 +56,7 @@ uses client/server mode of operation but can also provide support through a
 Relay Agent.
 
 %package	relay
-Summary:	DHCP relay agent for ipv6
+Summary:	DHCP relay agent for IPv6
 Group:		System/Servers
 Requires(preun):rpm-helper
 Requires(post):	rpm-helper	
@@ -69,7 +69,7 @@ uses client/server mode of operation but can also provide support through a
 Relay Agent.
 
 %package	doc
-Summary:	Documentation about the DHCP ipv6 server/client
+Summary:	Documentation about the DHCP IPv6 server/client
 Group:		System/Servers
 
 %description	doc
