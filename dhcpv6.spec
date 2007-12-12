@@ -62,11 +62,6 @@ Relay Agent.
 rm -rf %{buildroot}
 %makeinstall_std
 
-perl -pi -e 's/^# chkconfig:/# chkconfig: 345 66 36/' dhcp6s.sh
-
-mkdir -p %{buildroot}%{_initrddir}
-install -m755 dhcp6s.sh %{buildroot}%{_initrddir}/dhcp6s
-
 %post server
 %_post_service %{name}s
 
