@@ -59,7 +59,7 @@ Relay Agent.
 %make
 
 %install
-
+rm -rf %{buildroot}
 %makeinstall_std
 
 mkdir -p %buildroot/%{_sysconfdir}
