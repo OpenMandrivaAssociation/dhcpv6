@@ -129,7 +129,7 @@ server and client for IPv6.
 %install
 rm -rf %{buildroot}
 %makeinstall_std
-install -d %{buildroot}%{_localstatedir}/%{name}
+install -d %{buildroot}%{_localstatedir}/lib/%{name}
 
 %post -n %{client_libname} -p /sbin/ldconfig
 %postun -n %{client_libname} -p /sbin/ldconfig
@@ -166,7 +166,7 @@ rm -rf %{buildroot}
 
 %files common
 %defattr(-,root,root)
-%dir %{_localstatedir}/%{name}
+%dir %{_localstatedir}/lib/%{name}
 
 %files client
 %defattr(-,root,root)
