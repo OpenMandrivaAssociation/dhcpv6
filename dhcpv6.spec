@@ -131,8 +131,12 @@ rm -rf %{buildroot}
 %makeinstall_std
 install -d %{buildroot}%{_localstatedir}/lib/%{name}
 
+%if %mdkversion < 200900
 %post -n %{client_libname} -p /sbin/ldconfig
+%endif
+%if %mdkversion < 200900
 %postun -n %{client_libname} -p /sbin/ldconfig
+%endif
 
 %post server
 %_post_service dhcp6s
