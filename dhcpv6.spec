@@ -12,15 +12,16 @@ Relay Agent.
 
 Summary:	A DHCP client/server for IPv6
 Name:		dhcpv6
-Version:	1.0.3
-Release:	%mkrel 3
-License:	BSD
+Version:	1.0.21
+Release:	%mkrel 1
+License:	LGPLv2+
 Group:		System/Servers
 URL:		https://fedorahosted.org/dhcpv6/
 Source0:	http://dcantrel.fedorapeople.org/%{name}/%{name}-%{version}.tar.gz
 BuildRequires: bison
 BuildRequires: flex
 BuildRequires: openssl-devel
+BuildRequires: libnl-devel
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 Provides:	%{old_name}
 Obsoletes:	%{old_name}
@@ -122,7 +123,7 @@ server and client for IPv6.
 %setup -q 
 
 %build
-%configure
+%configure2_5x
 
 %make
 
@@ -155,7 +156,7 @@ rm -rf %{buildroot}
 
 %files doc
 %defattr(-,root,root)
-%doc docs/*
+%doc
 
 %files -n %{client_libname}
 %{_libdir}/lib%{client_name}-%{api}.so.%{major}*
