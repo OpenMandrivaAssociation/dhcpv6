@@ -13,7 +13,7 @@ Relay Agent.
 Summary:	A DHCP client/server for IPv6
 Name:		dhcpv6
 Version:	1.0.21
-Release:	%mkrel 1
+Release:	%mkrel 2
 License:	LGPLv2+
 Group:		System/Servers
 URL:		https://fedorahosted.org/dhcpv6/
@@ -25,8 +25,6 @@ BuildRequires: libnl-devel
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 Provides:	%{old_name}
 Obsoletes:	%{old_name}
-
-%define _sbindir /sbin
 
 %description 
 %{common_description}
@@ -132,6 +130,9 @@ rm -rf %{buildroot}
 %makeinstall_std
 install -d %{buildroot}%{_localstatedir}/lib/%{name}
 
+mkdir -p %buildroot/sbin
+mv %buildroot%_sbindir/dhcp6c %buildroot/sbin
+
 %if %mdkversion < 200900
 %post -n %{client_libname} -p /sbin/ldconfig
 %endif
@@ -176,7 +177,7 @@ rm -rf %{buildroot}
 %files client
 %defattr(-,root,root)
 %config(noreplace) %{_sysconfdir}/dhcp6c.conf
-%_sbindir/dhcp6c
+/sbin/dhcp6c
 %_mandir/man?/dhcp6c*
 
 %files server
