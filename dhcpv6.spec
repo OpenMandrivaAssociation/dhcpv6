@@ -5,19 +5,18 @@ independently or it can coexist with its counterpart protocol. This protocol\
 uses client/server mode of operation but can also provide support through a\
 Relay Agent.
 %define client_name dhcp6client
-%define api 1.0
-%define major 2
-%define client_libname %mklibname %{client_name} %{api} %{major}
-%define client_develname %mklibname %{client_name} -d
+
+#disable format security error flags, it doesn't play nice with lex
+%define Werror_cflags %nil
 
 Summary:	A DHCP client/server for IPv6
 Name:		dhcpv6
-Version:	1.0.21
-Release:	%mkrel 2
+Version:	1.1.0
+Release:	%mkrel 1
 License:	LGPLv2+
 Group:		System/Servers
 URL:		https://fedorahosted.org/dhcpv6/
-Source0:	http://dcantrel.fedorapeople.org/%{name}/%{name}-%{version}.tar.gz
+Source0:	https://fedorahosted.org/releases/d/h/dhcpv6/%{name}/%{name}-%{version}.tar.gz
 BuildRequires: bison
 BuildRequires: flex
 BuildRequires: openssl-devel
@@ -30,27 +29,6 @@ Obsoletes:	%{old_name}
 %{common_description}
 
 The protocol is defined by IETF DHC WG (www.ietf.org).
-
-
-%package -n     %{client_libname}
-Summary:        Library for %{client_name}
-Group:          System/Libraries
-Provides:       %{name} = %{version}-%{release}
-
-%description -n %{client_libname}
-This package contains the library needed to run programs dynamically
-linked with %{client_name}.
-
-
-%package -n     %{client_develname}
-Summary:        Headers for developing programs that will use %{client_name}
-Group:          Development/C
-Requires:       %{client_libname} = %{version}
-Provides:       %{client_name}-devel = %{version}-%{release}
-
-%description -n %{client_develname}
-This package contains the headers that programmers will need to develop
-applications which will use %{client_name}.
 
 
 %package	common
@@ -128,17 +106,9 @@ server and client for IPv6.
 %install
 rm -rf %{buildroot}
 %makeinstall_std
-install -d %{buildroot}%{_localstatedir}/lib/%{name}
 
-mkdir -p %buildroot/sbin
+mkdir -p %buildroot/sbin %buildroot%{_localstatedir}/lib/%{name}
 mv %buildroot%_sbindir/dhcp6c %buildroot/sbin
-
-%if %mdkversion < 200900
-%post -n %{client_libname} -p /sbin/ldconfig
-%endif
-%if %mdkversion < 200900
-%postun -n %{client_libname} -p /sbin/ldconfig
-%endif
 
 %post server
 %_post_service dhcp6s
@@ -158,17 +128,6 @@ rm -rf %{buildroot}
 %files doc
 %defattr(-,root,root)
 %doc
-
-%files -n %{client_libname}
-%{_libdir}/lib%{client_name}-%{api}.so.%{major}*
-
-%files -n %{client_develname}
-%dir %{_includedir}/%{client_name}
-%{_includedir}/%{client_name}/*.h
-%{_libdir}/lib%{client_name}.so
-%{_libdir}/lib%{client_name}.a
-%{_libdir}/lib%{client_name}.la
-%{_libdir}/pkgconfig/lib%{client_name}.pc
 
 %files common
 %defattr(-,root,root)
