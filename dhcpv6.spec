@@ -7,11 +7,11 @@ Relay Agent.
 %define client_name dhcp6client
 
 #disable format security error flags, it doesn't play nice with lex
-%define Werror_cflags %nil
+##%define Werror_cflags %nil
 
 Summary:	A DHCP client/server for IPv6
 Name:		dhcpv6
-Version:	1.1.0
+Version:	1.2.0
 Release:	%mkrel 1
 License:	LGPLv2+
 Group:		System/Servers
