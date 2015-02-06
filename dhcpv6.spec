@@ -12,7 +12,7 @@ Relay Agent.
 Summary:	A DHCP client/server for IPv6
 Name:		dhcpv6
 Version:	1.2.0
-Release:	%mkrel 1
+Release:	2
 License:	LGPLv2+
 Group:		System/Servers
 URL:		https://fedorahosted.org/dhcpv6/
